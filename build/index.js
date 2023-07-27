@@ -10,6 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express = require("express");
+// import * as express from "express"
 const connection_1 = require("./connection");
 const User_route_1 = require("./routes/User.route");
 const Product_route_1 = require("./routes/Product.route");
