@@ -12,14 +12,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express = require("express");
 const connection_1 = require("./connection");
 const User_route_1 = require("./routes/User.route");
-const product_model_1 = require("./model/product.model");
+const Product_route_1 = require("./routes/Product.route");
 const dotenv_1 = require("dotenv");
 (0, dotenv_1.configDotenv)();
 const port = process.env.PORT || 8080;
 const app = express();
 app.use(express.json());
 app.use("/users", User_route_1.default);
-app.use("/product", product_model_1.default);
+app.use("/product", Product_route_1.default);
 const server = app.listen(port, () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         yield connection_1.connection;

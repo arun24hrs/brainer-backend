@@ -5,6 +5,6 @@ const userSchema = new mongoose_1.Schema({
     name: { type: String, required: true },
     email: { type: String, required: true },
     password: { type: String, required: true },
-});
+}, { versionKey: false });
 const UserModel = mongoose_1.default.model("User", userSchema);
 exports.default = UserModel;
