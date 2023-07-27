@@ -13,11 +13,12 @@ const express = require("express");
 const product_model_1 = require("../model/product.model");
 const productRouter = express.Router();
 //Get Route
-productRouter.get("/:page", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { page } = req.params;
-    const pageNo = +page || 1;
+productRouter.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    // const {page} = req.params;
+    // const pageNo:number = +page || 1
     try {
-        const products = yield product_model_1.default.find().limit(8).skip(8 * (pageNo - 1));
+        const products = yield product_model_1.default.find().limit(8);
+        console.log(products);
         res.status(200).send({ products });
     }
     catch (error) {
