@@ -4,11 +4,13 @@ import {connection} from "./connection"
 import userRouter from "./routes/User.route"
 import productRouter from "./routes/Product.route"
 import {configDotenv} from "dotenv";
+import * as cors from 'cors'
 configDotenv();
 
 const port:string|number = process.env.PORT || 8080;
 const app: Express = express();
 app.use(express.json());
+app.use(cors())
 
 app.use("/users",userRouter);
 app.use("/product",productRouter);
