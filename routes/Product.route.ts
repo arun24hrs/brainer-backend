@@ -9,9 +9,9 @@ productRouter.get("/", async (req, res) => {
     // const {page} = req.params;
     // const pageNo:number = +page || 1
   try {
-    const products = await ProductModel.find().limit(8);
+    const product = await ProductModel.find().limit(8);
     // console.log(products)
-    res.status(200).send({ products });
+    res.status(200).send({ product });
     
   } catch (error) {
     res.status(400).send({ msg: error });
