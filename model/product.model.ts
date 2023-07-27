@@ -18,6 +18,6 @@ const productSchema:Schema = new Schema({
     versionKey: false
 });
 
-const ProductModel = mongoose.model<ProductType>("product", productSchema);
+const ProductModel = mongoose.model<ProductType>("products", productSchema);
 
 export default ProductModel
