@@ -5,12 +5,12 @@ const productRouter = express.Router();
 
 //Get Route
 
-productRouter.get("/:page", async (req, res) => {
-    const {page} = req.params;
-    const pageNo:number = +page || 1
+productRouter.get("/", async (req, res) => {
+    // const {page} = req.params;
+    // const pageNo:number = +page || 1
   try {
-    const products = await ProductModel.find().limit(8).skip(8*(pageNo-1));
-
+    const products = await ProductModel.find().limit(8);
+    console.log(products)
     res.status(200).send({ products });
     
   } catch (error) {
