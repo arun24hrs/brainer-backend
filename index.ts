@@ -1,6 +1,6 @@
 import { Express } from "express";
 import * as express from "express"
-import {connection} from "./connection"
+import connection from "./connection"
 import userRouter from "./routes/User.route"
 import productRouter from "./routes/Product.route"
 import {configDotenv} from "dotenv";
