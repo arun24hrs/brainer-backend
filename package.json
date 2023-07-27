@@ -2,7 +2,7 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
-  "main": "index.ts",
+  "main": "build/index.js",
   "scripts": {
     "server": "nodemon --exec ts-node index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
