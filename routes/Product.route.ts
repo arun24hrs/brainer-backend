@@ -1,10 +1,11 @@
+import { Request, Response, Router } from 'express';
 import * as express from 'express'
 import ProductModel from '../model/product.model'
 const productRouter = express.Router();
 
 //Get Route
 
-productRouter.get("/", async (req, res) => {
+productRouter.get("/", async (req:Request, res: Response) => {
 
   try {
     const product = await ProductModel.find().limit(8);
@@ -17,7 +18,7 @@ productRouter.get("/", async (req, res) => {
 
 // Post product route
 
-productRouter.post("/add", async(req, res)=> {
+productRouter.post("/add", async(req: Request, res: Response)=> {
   console.log(req.body)
   try {
     const product = new ProductModel(req.body);
@@ -30,7 +31,7 @@ productRouter.post("/add", async(req, res)=> {
 
 //get by search Route
 
-productRouter.get("/search", async (req, res) => {
+productRouter.get("/search", async (req: Request, res: Response) => {
     const {category} = req.query;
   try {
     const products = await ProductModel.find({
@@ -44,7 +45,7 @@ productRouter.get("/search", async (req, res) => {
 
 //get data by sort
 
-productRouter.get("/priceLTH", async (req, res) => {
+productRouter.get("/priceLTH", async (req: Request, res: Response) => {
     const {category} = req.query;
   try {
     const products = await ProductModel.find().sort({price: 1}).limit(8);
@@ -54,7 +55,7 @@ productRouter.get("/priceLTH", async (req, res) => {
   }
 });
 
-productRouter.get("/priceHTL", async (req, res) => {
+productRouter.get("/priceHTL", async (req: Request, res: Response) => {
     const {category} = req.query;
   try {
     const products = await ProductModel.find().sort({price: -1}).limit(8);
