@@ -9,6 +9,7 @@ configDotenv();
 
 const port:string|number = process.env.PORT || 8080;
 const app: Express = express();
+
 app.use(express.json());
 app.use(cors())
 
