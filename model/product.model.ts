@@ -1,7 +1,7 @@
 import mongoose, { Schema, Document } from "mongoose";
 
 export interface ProductType extends Document {
-    image: string;
+  image: string;
   name: string;
   price: number;
   description: string;
@@ -18,6 +18,6 @@ const productSchema:Schema = new Schema({
     versionKey: false
 });
 
-const ProductModel = mongoose.model<ProductType>("products", productSchema);
+const ProductModel = mongoose.model<ProductType>("product", productSchema);
 
 export default ProductModel
