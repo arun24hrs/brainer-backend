@@ -35,11 +35,10 @@ productRouter.post("/add", async(req: Request, res: Response)=> {
 //get by search Route
 
 productRouter.get("/search", async (req: Request, res: Response) => {
-    const {category} = req.query;
+    const {q} = req.query;
+    console.log(q)
   try {
-    const products = await ProductModel.find({
-      category
-    });
+    const products = await ProductModel.find({name: q});
     res.status(200).send({ products });
   } catch (error) {
     res.status(400).send({ msg: error });
@@ -49,20 +48,22 @@ productRouter.get("/search", async (req: Request, res: Response) => {
 //get data by sort
 
 productRouter.get("/priceLTH", async (req: Request, res: Response) => {
-    const {category} = req.query;
+  const query = (req.query);
+  const currPage = Number(query.page)
   try {
-    const products = await ProductModel.find().sort({price: 1}).limit(8);
-    res.status(200).send({ products });
+    const products = await ProductModel.find().sort({price: 1}).limit(4).skip((+currPage-1)*4);
+    res.status(200).send(products);
   } catch (error) {
     res.status(400).send({ msg: error });
   }
 });
 
 productRouter.get("/priceHTL", async (req: Request, res: Response) => {
-    const {category} = req.query;
+  const query = (req.query);
+  const currPage = Number(query.page)
   try {
-    const products = await ProductModel.find().sort({price: -1}).limit(8);
-    res.status(200).send({ products });
+    const products = await ProductModel.find().sort({price: -1}).limit(4).skip((+currPage-1)*4);
+    res.status(200).send(products);
   } catch (error) {
     res.status(400).send({ msg: error });
   }
