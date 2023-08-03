@@ -21,7 +21,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 app.use("/users", User_route_1.default);
-app.use("/product", Product_route_1.default);
+app.use("/products", Product_route_1.default);
 const server = app.listen(port, () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         yield connection_1.default;

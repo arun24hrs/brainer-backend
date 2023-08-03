@@ -12,26 +12,37 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express = require("express");
 const product_model_1 = require("../model/product.model");
 const productRouter = express.Router();
-//Get Route
+//Get Routes
+// Pagination
 productRouter.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    // const {page} = req.params;
-    // const pageNo:number = +page || 1
+    const query = (req.query);
+    const currPage = Number(query.page);
     try {
-        const products = yield product_model_1.default.find().limit(8);
-        console.log(products);
-        res.status(200).send({ products });
+        const product = yield product_model_1.default.find().limit(4).skip((+currPage - 1) * 4);
+        res.status(200).send(product);
     }
     catch (error) {
         res.status(400).send({ msg: error });
     }
 }));
+// Post product route
+productRouter.post("/add", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    console.log(req.body);
+    try {
+        const product = new product_model_1.default(req.body);
+        yield product.save();
+        res.status(200).send({ msg: "Product has been added." });
+    }
+    catch (error) {
+        res.status(400).send({ msg: "Product has not been added." });
+    }
+}));
 //get by search Route
 productRouter.get("/search", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { category } = req.query;
+    const { q } = req.query;
+    console.log(q);
     try {
-        const products = yield product_model_1.default.find({
-            category
-        });
+        const products = yield product_model_1.default.find({ name: q });
         res.status(200).send({ products });
     }
     catch (error) {
@@ -40,20 +51,22 @@ productRouter.get("/search", (req, res) => __awaiter(void 0, void 0, void 0, fun
 }));
 //get data by sort
 productRouter.get("/priceLTH", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { category } = req.query;
+    const query = (req.query);
+    const currPage = Number(query.page);
     try {
-        const products = yield product_model_1.default.find().sort({ price: 1 }).limit(8);
-        res.status(200).send({ products });
+        const products = yield product_model_1.default.find().sort({ price: 1 }).limit(4).skip((+currPage - 1) * 4);
+        res.status(200).send(products);
     }
     catch (error) {
         res.status(400).send({ msg: error });
     }
 }));
 productRouter.get("/priceHTL", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { category } = req.query;
+    const query = (req.query);
+    const currPage = Number(query.page);
     try {
-        const products = yield product_model_1.default.find().sort({ price: -1 }).limit(8);
-        res.status(200).send({ products });
+        const products = yield product_model_1.default.find().sort({ price: -1 }).limit(4).skip((+currPage - 1) * 4);
+        res.status(200).send(products);
     }
     catch (error) {
         res.status(400).send({ msg: error });
