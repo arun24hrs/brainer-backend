@@ -3,18 +3,21 @@ import * as express from 'express'
 import ProductModel from '../model/product.model'
 const productRouter = express.Router();
 
-//Get Route
+//Get Routes
 
+// Pagination
 productRouter.get("/", async (req:Request, res: Response) => {
-
+  const query = (req.query);
+  const currPage = Number(query.page)
   try {
-    const product = await ProductModel.find().limit(8);
+    const product = await ProductModel.find().limit(4).skip((+currPage-1)*4);
     res.status(200).send(product);
     
   } catch (error) {
     res.status(400).send({ msg: error });
   }
 });
+
 
 // Post product route
 
