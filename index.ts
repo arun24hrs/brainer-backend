@@ -8,7 +8,7 @@ import * as cors from 'cors'
 configDotenv();
 
 const port:string|number = process.env.PORT || 8080;
-const app: Express = express();
+const app = express();
 
 app.use(express.json());
 app.use(cors())

@@ -6,6 +6,6 @@
     "rootDir":"./",
     "strict": true
   },
-  "include": ["*.ts"],
+  "include": ["*.ts", "**/**.ts"],
   "exclude": ["node_modules", "build"]
 }
