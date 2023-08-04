@@ -38,7 +38,7 @@ userRouter.post("/login", async (req, res) => {
         } else if(result) {
           res.status(200).send({
             msg: "Login Successful",
-            token: jwt.sign({ pass: password }, process.env.SECRET_KEY),
+            token: jwt.sign({ pass: password }, process.env.SECRET_KEY, { expiresIn: '1h' }),
           });
         }
         else {
